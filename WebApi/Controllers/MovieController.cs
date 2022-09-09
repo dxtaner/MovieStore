@@ -99,6 +99,18 @@ namespace WebApi.Controllers
             movie.title = updatedMovie.title != default ? updatedMovie.title : movie.title;
 
             return Ok();
-        }  
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteMovie(int id)
+        {
+            var movie = MovieList.SingleOrDefault(m => m.Id == id);
+
+            if (movie is null)
+                return BadRequest();
+
+            MovieList.Remove(movie);
+            return Ok();
+        } 
     }
 }
