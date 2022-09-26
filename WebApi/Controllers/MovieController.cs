@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Entites;
 
 namespace WebApi.Controllers
 {
@@ -12,49 +13,34 @@ namespace WebApi.Controllers
          new Movie()
             {
                 Id = 1,
-                title = "LOTR",
-                genreId = 1,
-                len = 320,
-                publishDate = new DateTime(2000, 12, 02)
+                Title = "LOTR",
             },
           new Movie()
             {
                 Id = 2,
-                title = "City on a Hill (2019)",
-                genreId = 2,
-                len = 60,
-                publishDate = new DateTime(2022, 08, 02)
+                Title = "City on a Hill (2019)",
             },
              new Movie()
             {
                 Id = 2,
-                title = "Yüzüklerin Efendisi: Kralın Dönüşü (2003)",
-                genreId = 1,
-                len = 201,
-                publishDate = new DateTime(2003, 12, 19)
+                Title = "Yüzüklerin Efendisi: Kralın Dönüşü (2003)",
             },
             new Movie()
             {
                 Id = 4,
-                title = "What We Do in the Shadows (2016–)",
-                genreId = 3,
-                len = 50,
-                publishDate = new DateTime(2016, 11, 12)
+                Title = "What We Do in the Shadows (2016–)",
             },
             new Movie()
             {
                 Id = 5,
-                title = "Pinocchio (2022)",
-                genreId = 5,
-                len = 100,
-                publishDate = new DateTime(2022, 06, 02)
+                Title = "Pinocchio (2022)",
             },
         };
 
         [HttpGet]
-        public List<Movie> GetBooks()
+        public List<Movie> GetMovies()
         {
-            var movieList = MovieList.OrderBy(m => m.genreId).ToList<Movie>();
+            var movieList = MovieList.OrderBy(m => m.Genre).ToList<Movie>();
             return movieList;
         }
 
@@ -64,18 +50,12 @@ namespace WebApi.Controllers
             var movie = MovieList.Where(movie => movie.Id == id).SingleOrDefault();
             return movie;
         }
-        
-        // [HttpGet]
-        // public Movie Get([FromQuery] string id)
-        // {
-        //     var movie = MovieList.Where(movie => movie.Id == Convert.ToInt32(id)).SingleOrDefault();
-        //     return movie;
-        // }
+
 
         [HttpPost]
-        public IActionResult AddBook([FromBody] Movie newMovie)
+        public IActionResult AddMovie([FromBody] Movie newMovie)
         {
-            var movie = MovieList.SingleOrDefault(m => m.title == newMovie.title);
+            var movie = MovieList.SingleOrDefault(m => m.Title == newMovie.Title);
 
             if (movie is not null)
                 return BadRequest();
@@ -86,17 +66,15 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateBook(int id,[FromBody] Movie updatedMovie)
+        public IActionResult UpdateMovie(int id,[FromBody] Movie updatedMovie)
         {
             var movie = MovieList.SingleOrDefault(m => m.Id == id);
 
             if (movie is null)
                 return BadRequest();
 
-            movie.genreId = updatedMovie.genreId != default ? updatedMovie.genreId : movie.genreId;
-            movie.len = updatedMovie.len != default ? updatedMovie.len : movie.len;
-            movie.publishDate = updatedMovie.publishDate != default ? updatedMovie.publishDate : movie.publishDate;
-            movie.title = updatedMovie.title != default ? updatedMovie.title : movie.title;
+            movie.Genre = updatedMovie.Genre != default ? updatedMovie.Genre : movie.Genre;
+            movie.Title = updatedMovie.Title != default ? updatedMovie.Title : movie.Title;
 
             return Ok();
         }
