@@ -40,7 +40,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public List<Movie> GetMovies()
         {
-            var movieList = MovieList.OrderBy(m => m.Genre).ToList<Movie>();
+            var movieList = MovieList.OrderBy(m => m.GenreId).ToList<Movie>();
             return movieList;
         }
 
@@ -66,14 +66,14 @@ namespace WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateMovie(int id,[FromBody] Movie updatedMovie)
+        public IActionResult UpdateMovie(int id, [FromBody] Movie updatedMovie)
         {
             var movie = MovieList.SingleOrDefault(m => m.Id == id);
 
             if (movie is null)
                 return BadRequest();
 
-            movie.Genre = updatedMovie.Genre != default ? updatedMovie.Genre : movie.Genre;
+            movie.GenreId = updatedMovie.GenreId != default ? updatedMovie.GenreId : movie.GenreId;
             movie.Title = updatedMovie.Title != default ? updatedMovie.Title : movie.Title;
 
             return Ok();
@@ -89,6 +89,6 @@ namespace WebApi.Controllers
 
             MovieList.Remove(movie);
             return Ok();
-        } 
+        }
     }
 }
