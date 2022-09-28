@@ -10,7 +10,6 @@ namespace WebApi.DBOperations
             using (var context = new MovieStoreDbContext(
             serviceProvider.GetRequiredService<DbContextOptions<MovieStoreDbContext>>()))
             {
-                // Look for any book.
                 if (context.Movies.Any())
                 {
                     return;   // Data was already seeded
