@@ -16,43 +16,39 @@ namespace WebApi.DBOperations
                     return;   // Data was already seeded
                 }
 
-                var actors = new List<Actor>{
-                new Actor
-                {
-
-                },
-                new Actor
-                {
-
-                },
-                new Actor
-                {
-
-                }
+                List<Genre> genres = new List<Genre>(){
+                    new Genre { GenreName = "Love" },
+                    new Genre { GenreName = "Noval" },
+                    new Genre { GenreName = "ScienceFiction" },
+                    new Genre { GenreName = "Fii" },
+                    new Genre { GenreName = "Turkish" },
+                    new Genre { GenreName = "Action" }
                 };
 
-                context.Genres.AddRange(
-                  new Genre
-                  {
-                      GenreName = "PersonalGrowth"
-                  },
-                  new Genre
-                  {
-                      GenreName = "ScienceFiction"
-                  },
-                  new Genre
-                  {
-                      GenreName = "Noval"
-                  }
-                );
-
-                context.Directors.AddRange(
-                new Director()
+                if (context.Genres.Any())
                 {
+                    return;
+                }
+                context.Genres.AddRange(genres);
 
-                });
+                List<Director> directors = new List<Director>(){
+                    new Director{Name="Christopher",Surname=" Nolan"},
+                    new Director{Name="Quentin",Surname="Tarantino"},
+                    new Director{Name="Emnith",Surname="Samalayabnr"}
+                };
+
+                context.Directors.AddRange(directors);
+
+
+                List<Actor> actors = new List<Actor>(){
+                    new Actor {Name="Polat", Surname="Alemdar"},
+                    new Actor {Name="Fattih", Surname="Terim"},
+                    new Actor {Name="Bruce",Surname="Wayne"},
+                    new Actor {Name="Crihis",Surname="Yaolo"},
+                };
 
                 context.Actors.AddRange(actors);
+
 
 
                 context.SaveChanges();
