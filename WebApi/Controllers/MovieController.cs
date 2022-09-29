@@ -1,4 +1,6 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.DBOperations;
 using WebApi.Entites;
 
 namespace WebApi.Controllers
@@ -8,40 +10,21 @@ namespace WebApi.Controllers
     [Route("[controller]s")]
     public class MovieController : ControllerBase
     {
-        private static List<Movie> MovieList = new List<Movie>(){
+        private readonly IMovieStoreDbContext _context;
+        private readonly IMapper _mapper;
 
-         new Movie()
-            {
-                Id = 1,
-                Title = "LOTR",
-            },
-          new Movie()
-            {
-                Id = 2,
-                Title = "City on a Hill (2019)",
-            },
-             new Movie()
-            {
-                Id = 2,
-                Title = "Yüzüklerin Efendisi: Kralın Dönüşü (2003)",
-            },
-            new Movie()
-            {
-                Id = 4,
-                Title = "What We Do in the Shadows (2016–)",
-            },
-            new Movie()
-            {
-                Id = 5,
-                Title = "Pinocchio (2022)",
-            },
-        };
+        public MovieController(IMovieStoreDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
         [HttpGet]
-        public List<Movie> GetMovies()
+        public IActionResult GetMovies()
         {
-            var movieList = MovieList.OrderBy(m => m.GenreId).ToList<Movie>();
-            return movieList;
+            GetMoviesQuery query = new GetMoviesQuery(_context, _mapper);
+            var _movies = query.Handle();
+            return Ok(_movies);
         }
 
         [HttpGet("{id}")]
