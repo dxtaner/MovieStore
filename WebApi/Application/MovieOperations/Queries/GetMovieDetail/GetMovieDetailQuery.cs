@@ -1,3 +1,6 @@
+using AutoMapper;
+using WebApi.DBOperations;
+
 namespace WebApi.Application.MovieOperations.Queries.GetMovieDetail
 {
     public class GetMovieDetailQuery
