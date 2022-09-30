@@ -11,7 +11,7 @@ namespace WebApi.Entites
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
         public DateTime PublishDate { get; set; }
-        public string DirectorID { get; set; }
+        public int DirectorID { get; set; }
         public Director Director { get; set; }
         public List<Actor> Actors { get; set; }
         public int Price { get; set; }
