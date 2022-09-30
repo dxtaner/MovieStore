@@ -1,5 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Application.MovieOperations.Queries.GetMovieDetail;
+using WebApi.Application.MovieOperations.Queries.GetMovies;
 using WebApi.DBOperations;
 using WebApi.Entites;
 
@@ -30,8 +32,14 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public Movie GetById(int id)
         {
-            var movie = MovieList.Where(movie => movie.Id == id).SingleOrDefault();
-            return movie;
+            GetMovieDetailQuery query = new GetMovieDetailQuery(_context, _mapper);
+            query.movieID = id;
+
+            GetMovieDetailQueryValidator validator = new GetMovieDetailQueryValidator();
+            validator.ValidateAndThrow(query);
+
+            var _movie = query.Handle();
+            return Ok(_movie);
         }
 
 

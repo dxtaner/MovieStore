@@ -12,8 +12,7 @@ namespace WebApi.Entites
         public string Surname { get; set; }
         public string Movies { get; set; }
         public List<Movie> FavMovieGenre { get; set; }
-        public List<Movie> BougthFilms { get; set; }
-
+        public List<Movie> BoughtFilms { get; set; }
 
 
     }

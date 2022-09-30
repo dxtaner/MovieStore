@@ -31,24 +31,66 @@ namespace WebApi.DBOperations
                 context.Genres.AddRange(genres);
 
                 List<Director> directors = new List<Director>(){
-                    new Director{Name="Christopher",Surname=" Nolan"},
+                    new Director{Name="Christopher",Surname=" Nolan", DirectedMovies={}},
                     new Director{Name="Quentin",Surname="Tarantino"},
-                    new Director{Name="Emnith",Surname="Samalayabnr"}
+                    new Director{Name="Emnith",Surname="Samalayabnr"},
+                    new Director{Name="Raci",Surname="Şaşmaz"},
+                    new Director{Name="Asi",Surname="Beya"}
+
                 };
 
+                if (context.Directors.Any())
+                {
+                    return;
+                }
                 context.Directors.AddRange(directors);
 
-
                 List<Actor> actors = new List<Actor>(){
-                    new Actor {Name="Polat", Surname="Alemdar"},
+                    new Actor {Name="Polat", Surname="Alemdar", PlayedMovies={}},
                     new Actor {Name="Fattih", Surname="Terim"},
                     new Actor {Name="Bruce",Surname="Wayne"},
                     new Actor {Name="Crihis",Surname="Yaolo"},
                 };
 
+                if (context.Actors.Any())
+                {
+                    return;
+                }
                 context.Actors.AddRange(actors);
 
 
+                List<Movie> movies = new List<Movie>(){
+                    new Movie{Title="Dark Knight Rises",PublishDate=DateTime.Now.AddYears(-9),GenreId=6,DirectorID=1,Price=230,
+                    Actors = new List<Actor>(){actors[2],actors[3]
+                        }
+                    },
+                    new Movie{Title="KVP",PublishDate=DateTime.Now.AddYears(-20),GenreId=5,DirectorID=4,Price=150,
+                    Actors = new List<Actor>(){
+                        actors[0],actors[1]
+                        }
+                    }
+                };
+
+                if (context.Movies.Any())
+                {
+                    return;
+                }
+                context.Movies.AddRange(movies);
+
+                List<Customer> customers = new List<Customer>(){
+                    new Customer{Name="Hasan",Surname="Ali",
+                    FavMovieGenre = new List<Movie>(){movies[0],movies[2]}
+                    },
+                    new Customer{Name="Beril",Surname="Cemre",
+                    FavMovieGenre = new List<Movie>(){movies[5],movies[2]}
+                    }
+                };
+
+                if (context.Customers.Any())
+                {
+                    return;
+                }
+                context.Customers.AddRange(customers);
 
                 context.SaveChanges();
             }
