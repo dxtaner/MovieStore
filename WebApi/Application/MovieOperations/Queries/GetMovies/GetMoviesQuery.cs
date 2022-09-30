@@ -1,6 +1,8 @@
 using AutoMapper;
 using WebApi.DBOperations;
 using WebApi.Entites;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace WebApi.Application.MovieOperations.Queries.GetMovies
 {
@@ -13,10 +15,9 @@ namespace WebApi.Application.MovieOperations.Queries.GetMovies
             _context = context;
             _mapper = mapper;
         }
-
         public List<GetMoviesModel> Handle()
         {
-            var _movieList = _context.Movies.Include(m => m.Genre).Include(g => g.Director).OrderBy(d => d.Id).ToList<Movie>();
+            var _movieList = _context.Movies.Include(m => m.Genre).Include(g => g.Director).OrderBy(d => d.Id).ToList();
 
             List<GetMoviesModel> mv = _mapper.Map<List<GetMoviesModel>>(_movieList);
             return mv;
