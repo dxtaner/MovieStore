@@ -7,7 +7,6 @@ using WebApi.Application.MovieOperations.Commands.UpdateMovie;
 using WebApi.Application.MovieOperations.Queries.GetMovieDetail;
 using WebApi.Application.MovieOperations.Queries.GetMovies;
 using WebApi.DBOperations;
-using WebApi.Entites;
 
 namespace WebApi.Controllers
 {
