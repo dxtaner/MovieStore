@@ -1,5 +1,9 @@
 using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Application.MovieOperations.Commands.CreateMovie;
+using WebApi.Application.MovieOperations.Commands.DeleteMovie;
+using WebApi.Application.MovieOperations.Commands.UpdateMovie;
 using WebApi.Application.MovieOperations.Queries.GetMovieDetail;
 using WebApi.Application.MovieOperations.Queries.GetMovies;
 using WebApi.DBOperations;
@@ -30,7 +34,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public Movie GetById(int id)
+        public IActionResult GetById(int id)
         {
             GetMovieDetailQuery query = new GetMovieDetailQuery(_context, _mapper);
             query.movieID = id;
@@ -44,28 +48,29 @@ namespace WebApi.Controllers
 
 
         [HttpPost]
-        public IActionResult AddMovie([FromBody] Movie newMovie)
+        public IActionResult CreateMovie([FromBody] CreateMovieModel newMovie)
         {
-            var movie = MovieList.SingleOrDefault(m => m.Title == newMovie.Title);
+            CreateMovieCommand command = new CreateMovieCommand(_context, _mapper);
+            command.Model = newMovie;
 
-            if (movie is not null)
-                return BadRequest();
+            CreateMovieCommandValidator validator = new CreateMovieCommandValidator();
+            validator.ValidateAndThrow(command);
 
-            MovieList.Add(newMovie);
+            command.Handle();
             return Ok();
 
         }
 
-        [HttpPut]
-        public IActionResult UpdateMovie(int id, [FromBody] Movie updatedMovie)
+        [HttpPut("{id}")]
+        public IActionResult UpdateMovie(int id, [FromBody] UpdateMovieModel _update)
         {
-            var movie = MovieList.SingleOrDefault(m => m.Id == id);
+            UpdateMovieCommand updateMovieCommand = new UpdateMovieCommand(_context);
+            updateMovieCommand.Model = _update;
+            updateMovieCommand.MovieID = id;
 
-            if (movie is null)
-                return BadRequest();
-
-            movie.GenreId = updatedMovie.GenreId != default ? updatedMovie.GenreId : movie.GenreId;
-            movie.Title = updatedMovie.Title != default ? updatedMovie.Title : movie.Title;
+            UpdateMovieCommandValidator validator = new UpdateMovieCommandValidator();
+            validator.ValidateAndThrow(updateMovieCommand);
+            updateMovieCommand.Handle();
 
             return Ok();
         }
@@ -73,12 +78,13 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteMovie(int id)
         {
-            var movie = MovieList.SingleOrDefault(m => m.Id == id);
+            DeleteMovieCommand query = new DeleteMovieCommand(_context);
+            query.MovieID = id;
 
-            if (movie is null)
-                return BadRequest();
+            DeleteMovieCommandValidator validator = new DeleteMovieCommandValidator();
+            validator.ValidateAndThrow(query);
 
-            MovieList.Remove(movie);
+            query.Handle();
             return Ok();
         }
     }
