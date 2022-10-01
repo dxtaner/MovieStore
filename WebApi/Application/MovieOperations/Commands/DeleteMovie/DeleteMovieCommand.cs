@@ -5,14 +5,14 @@ namespace WebApi.Application.MovieOperations.Commands.DeleteMovie
     public class DeleteMovieCommand
     {
         private readonly IMovieStoreDbContext _context;
-        public int movieID { get; set; }
+        public int MovieID { get; set; }
         public DeleteMovieCommand(IMovieStoreDbContext context)
         {
             _context = context;
         }
         public void Handle()
         {
-            var _movie = _context.Movies.SingleOrDefault(m => m.Id == movieID);
+            var _movie = _context.Movies.SingleOrDefault(m => m.Id == MovieID);
             if (_movie is null)
                 throw new InvalidOperationException("Film bulunamadı.");
 
