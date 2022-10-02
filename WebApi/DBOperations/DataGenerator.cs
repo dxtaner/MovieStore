@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WebApi.Entites;
+using WebApi.Entities;
 
 namespace WebApi.DBOperations
 {
@@ -91,6 +91,19 @@ namespace WebApi.DBOperations
                     return;
                 }
                 context.Customers.AddRange(customers);
+
+                List<BoughtMovie> boughtMovies = new List<BoughtMovie>(){
+                    new BoughtMovie{CustomerID=1,MovieID=1,BoughtMovieDate=DateTime.Now,Price=movies[0].Price, isActive=true},
+                    new BoughtMovie{CustomerID=2,MovieID=2,BoughtMovieDate=DateTime.Now,Price=movies[2].Price, isActive=true},
+                    new BoughtMovie{CustomerID=1,MovieID=2,BoughtMovieDate=DateTime.Now,Price=movies[1].Price, isActive=true}
+                };
+
+                if (context.BoughtMovies.Any())
+                {
+                    return;
+                }
+                context.BoughtMovies.AddRange(boughtMovies);
+
 
                 context.SaveChanges();
             }
