@@ -18,9 +18,9 @@ namespace WebApi.Application.MovieOperations.Commands.UpdateMovie
             if (updateMovie is null)
                 throw new InvalidOperationException("Film bulunamadı.");
 
-            updateMovie.GenreID = updateMovie.GenreID != default ? Model.GenreID : updateMovie.GenreID;
+            updateMovie.GenreId = updateMovie.GenreId != default ? Model.GenreID : updateMovie.GenreId;
             updateMovie.Price = updateMovie.Price != default ? Model.Price : updateMovie.Price;
-            updateMovie.PublisDate = updateMovie.PublisDate != default ? Model.PublisDate : updateMovie.PublisDate;
+            updateMovie.PublishDate = updateMovie.PublishDate != default ? Model.PublisDate : updateMovie.PublishDate;
             updateMovie.Title = updateMovie.Title != default ? Model.Title : updateMovie.Title;
             updateMovie.DirectorID = updateMovie.DirectorID != default ? Model.DirectorID : updateMovie.DirectorID;
 

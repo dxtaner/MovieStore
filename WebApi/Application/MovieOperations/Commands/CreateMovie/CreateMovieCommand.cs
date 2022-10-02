@@ -1,6 +1,6 @@
 using AutoMapper;
 using WebApi.DBOperations;
-using WebApi.Entites;
+using WebApi.Entities;
 
 namespace WebApi.Application.MovieOperations.Commands.CreateMovie
 {
