@@ -1,16 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using WebApi.Entites;
+using WebApi.Entities;
 
 namespace WebApi.DBOperations
 {
-    public class IMovieStoreDbContext
+    public interface IMovieStoreDbContext
     {
-        DbSet<Actor> Actors { get; set; }
-        DbSet<Genre> Genres { get; set; }
-        DbSet<Director> Directors { get; set; }
         DbSet<Movie> Movies { get; set; }
+        DbSet<Genre> Genres { get; set; }
         DbSet<Customer> Customers { get; set; }
-
-        int SaveChanges { get; }
+        DbSet<Actor> Actors { get; set; }
+        DbSet<Director> Directors { get; set; }
+        int SaveChanges();
     }
 }
