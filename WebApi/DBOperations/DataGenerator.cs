@@ -82,7 +82,7 @@ namespace WebApi.DBOperations
                     FavMovieGenre = new List<Movie>(){movies[0],movies[2]}
                     },
                     new Customer{Name="Beril",Surname="Cemre",
-                    FavMovieGenre = new List<Movie>(){movies[5],movies[2]}
+                    FavMovieGenre = new List<Movie>(){movies[1],movies[2]}
                     }
                 };
 

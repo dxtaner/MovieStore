@@ -1,7 +1,7 @@
 using AutoMapper;
 using WebApi.Application.MovieOperations.Queries.GetMovieDetail;
 using WebApi.Application.MovieOperations.Queries.GetMovies;
-using WebApi.Entites;
+using WebApi.Entities;
 
 namespace WebApi.Common
 {
