@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using WebApi.Entites;
 
 namespace WebApi.Entities
 {

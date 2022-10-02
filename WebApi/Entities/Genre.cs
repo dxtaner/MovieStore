@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApi.Entites
+namespace WebApi.Entities
 {
 
     public class Genre
