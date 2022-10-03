@@ -77,32 +77,32 @@ namespace WebApi.DBOperations
                 }
                 context.Movies.AddRange(movies);
 
-                List<Customer> customers = new List<Customer>(){
-                    new Customer{Name="Hasan",Surname="Ali",
-                    FavMovieGenre = new List<Movie>(){movies[0],movies[2]}
-                    },
-                    new Customer{Name="Beril",Surname="Cemre",
-                    FavMovieGenre = new List<Movie>(){movies[1],movies[2]}
-                    }
-                };
+                // List<Customer> customers = new List<Customer>(){
+                //     new Customer{Name="Hasan",Surname="Ali",
+                //     FavMovieGenre = new List<Movie>(){movies[0],movies[2]}
+                //     },
+                //     new Customer{Name="Beril",Surname="Cemre",
+                //     FavMovieGenre = new List<Movie>(){movies[1],movies[2]}
+                //     }
+                // };
 
-                if (context.Customers.Any())
-                {
-                    return;
-                }
-                context.Customers.AddRange(customers);
+                // if (context.Customers.Any())
+                // {
+                //     return;
+                // }
+                // context.Customers.AddRange(customers);
 
-                List<BoughtMovie> boughtMovies = new List<BoughtMovie>(){
-                    new BoughtMovie{CustomerID=1,MovieID=1,BoughtMovieDate=DateTime.Now,Price=movies[0].Price, isActive=true},
-                    new BoughtMovie{CustomerID=2,MovieID=2,BoughtMovieDate=DateTime.Now,Price=movies[2].Price, isActive=true},
-                    new BoughtMovie{CustomerID=1,MovieID=2,BoughtMovieDate=DateTime.Now,Price=movies[1].Price, isActive=true}
-                };
+                // List<BoughtMovie> boughtMovies = new List<BoughtMovie>(){
+                //     new BoughtMovie{CustomerID=1,MovieID=1,BoughtMovieDate=DateTime.Now,Price=movies[0].Price, isActive=true},
+                //     new BoughtMovie{CustomerID=2,MovieID=2,BoughtMovieDate=DateTime.Now,Price=movies[2].Price, isActive=true},
+                //     new BoughtMovie{CustomerID=1,MovieID=2,BoughtMovieDate=DateTime.Now,Price=movies[1].Price, isActive=true}
+                // };
 
-                if (context.BoughtMovies.Any())
-                {
-                    return;
-                }
-                context.BoughtMovies.AddRange(boughtMovies);
+                // if (context.BoughtMovies.Any())
+                // {
+                //     return;
+                // }
+                // context.BoughtMovies.AddRange(boughtMovies);
 
 
                 context.SaveChanges();
