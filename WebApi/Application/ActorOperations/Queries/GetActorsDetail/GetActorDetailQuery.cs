@@ -40,6 +40,5 @@ namespace WebApi.Application.ActorOperations.Queries.GetActorDetail
         public string Surname { get; set; }
         public List<Movie> PlayedMovies { get; set; }
 
-
     }
 }
