@@ -2,6 +2,11 @@ using AutoMapper;
 using WebApi.Application.ActorOperations.Commands.CreateActor;
 using WebApi.Application.ActorOperations.Commands.UpdateActor;
 using WebApi.Application.ActorOperations.Queries.GetActorDetail;
+using WebApi.Application.ActorOperations.Queries.GetActors;
+using WebApi.Application.DirectorOperations.Commands.CreateDirector;
+using WebApi.Application.DirectorOperations.Commands.UpdateDirector;
+using WebApi.Application.DirectorOperations.Queries.GetDirectorDetail;
+using WebApi.Application.DirectorOperations.Queries.GetDirectors;
 using WebApi.Application.GenreOperations.Commands.CreateGenre;
 using WebApi.Application.GenreOperations.Commands.UpdateGenre;
 using WebApi.Application.GenreOperations.Queries.GetGenreDetail;
@@ -22,10 +27,15 @@ namespace WebApi.Common
             CreateMap<Genre, GenreDetailModel>();
             CreateMap<Genre, UpdateGenreModel>();
             CreateMap<Genre, CreateGenreModel>();
-            CreateMap<Actor, ActorDetailModel>();
+            CreateMap<Actor, GetActorsModel>();
             CreateMap<Actor, ActorDetailModel>();
             CreateMap<Actor, UpdateActorModel>();
             CreateMap<Actor, CreateActorModel>();
+            CreateMap<Director, GetDirectorsModel>();
+            CreateMap<Director, DirectorDetailModel>();
+            CreateMap<Director, UpdateDirectorModel>();
+            CreateMap<Director, CreateDirectorModel>();
+
 
 
 
