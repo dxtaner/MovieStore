@@ -34,7 +34,7 @@ namespace WebApi.Application.CustomerOperations.Commands.CreateCustomer
         public string Name { get; set; }
         public string Surname { get; set; }
         // public string Movies { get; set; }
-        public List<Movie> FavMovieGenre { get; set; }
+        public List<Genre> FavMovieGenre { get; set; }
         public List<Movie> BoughtFilms { get; set; }
 
     }
