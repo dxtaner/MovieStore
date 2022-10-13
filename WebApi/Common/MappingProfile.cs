@@ -3,6 +3,10 @@ using WebApi.Application.ActorOperations.Commands.CreateActor;
 using WebApi.Application.ActorOperations.Commands.UpdateActor;
 using WebApi.Application.ActorOperations.Queries.GetActorDetail;
 using WebApi.Application.ActorOperations.Queries.GetActors;
+using WebApi.Application.CustomerOperations.Commands.CreateCustomer;
+using WebApi.Application.CustomerOperations.Commands.UpdateCustomer;
+using WebApi.Application.CustomerOperations.Queries.GetCustomerDetail;
+using WebApi.Application.CustomerOperations.Queries.GetCustomers;
 using WebApi.Application.DirectorOperations.Commands.CreateDirector;
 using WebApi.Application.DirectorOperations.Commands.UpdateDirector;
 using WebApi.Application.DirectorOperations.Queries.GetDirectorDetail;
@@ -35,7 +39,10 @@ namespace WebApi.Common
             CreateMap<Director, DirectorDetailModel>();
             CreateMap<Director, UpdateDirectorModel>();
             CreateMap<Director, CreateDirectorModel>();
-
+            CreateMap<Customer, GetCustomersModel>().ForMember(dest => dest.BoughtFilms, opt => opt.MapFrom(src => src.BoughtFilms));
+            CreateMap<Customer, CustomerDetailModel>();
+            CreateMap<Customer, UpdateCustomerModel>();
+            CreateMap<Customer, CreateCustomerModel>();
 
 
 
