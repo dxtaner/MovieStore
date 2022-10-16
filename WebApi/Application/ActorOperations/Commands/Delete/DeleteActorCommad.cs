@@ -16,6 +16,10 @@ namespace WebApi.Application.ActorOperations.Commands.DeleteActor
             if (_Actor is null)
                 throw new InvalidOperationException("Aktör bulunamadı.");
 
+            var _Movie = _context.Movies.FirstOrDefault(x => x.Actors.Any(u => u.Id == ActorID));
+            if (_Movie is not null)
+                throw new InvalidOperationException("Aktör Silinemez!! Zaten Mevcut Filmi Var.");
+
 
             _context.Actors.Remove(_Actor);
             _context.SaveChanges();
