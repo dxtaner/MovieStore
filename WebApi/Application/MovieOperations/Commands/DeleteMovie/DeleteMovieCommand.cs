@@ -16,6 +16,11 @@ namespace WebApi.Application.MovieOperations.Commands.DeleteMovie
             if (_movie is null)
                 throw new InvalidOperationException("Film bulunamadı.");
 
+            var _BoughtMovie = _context.BoughtMovies.FirstOrDefault(x => x.MovieID == MovieID);
+            if (_BoughtMovie is not null)
+                throw new InvalidOperationException("Movie silinemez. Siparişi Bulunmakta.");
+
+
 
             _context.Movies.Remove(_movie);
             _context.SaveChanges();
