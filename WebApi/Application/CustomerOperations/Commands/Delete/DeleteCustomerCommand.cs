@@ -16,6 +16,10 @@ namespace WebApi.Application.CustomerOperations.Commands.DeleteCustomer
             if (_Customer is null)
                 throw new InvalidOperationException("Customer bulunamadı.");
 
+            var _BoughtMovies = _context.BoughtMovies.FirstOrDefault(x => x.CustomerID == CustomerID);
+            if (_BoughtMovies is not null)
+                throw new InvalidOperationException("Customer silinemez. Mevcut Siparişi Bulunmakta.");
+
 
             _context.Customers.Remove(_Customer);
             _context.SaveChanges();
