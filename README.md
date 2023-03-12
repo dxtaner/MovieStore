@@ -1,19 +1,62 @@
 # Film Store Application
-This application is developed to manage the database of a movie store. The application is written in C# programming language and uses .NET Framework 6, Inmemory is used for database management.
+This application is a film store developed using C# .NET Web API. The application allows users to search, review, and purchase movies. Additionally, it allows application administrators to manage data such as movies, directors, actors, genres, customers, and purchased movies.
 
-This application includes Movie, Actor, Director, Genre, Customer, and BoughtMovie models. Each of these models represents a part of the information stored in the database. Additionally, this application provides a Web API for making HTTP requests to access and manage information in the database.
+## Models
+This application uses six different models:
+
+Movie: Holds movie data.
+Actor: Holds actor data.
+Director: Holds director data.
+Genre: Holds genre data.
+Customer: Holds customer data.
+BoughtMovie: Holds purchased movie data.
 
 ## Requirements
-Visual Studio 2017 or later
-Postman or any other HTTP client
-## Installation
-Clone or download this repository.
-Modify the DefaultConnection value in the appsettings.json file with your own database connection.
-Open the project in Visual Studio.
-Build the project.
-Run the application.
-Usage
-To use this application, you can make requests to the API using an HTTP client. For example, using Postman, you can make the following sample requests:
+To run this application, you need:
 
-## Movies
-For movie-related requests, you can use the following URLs:
+.NET Framework 6 or above
+Visual Studio 2017 or above
+
+## Installation
+To use this application, you can follow these steps:
+
+Clone or download this project.
+Open the project in Visual Studio.
+Press F5 to start the application.
+
+## API Endpoints
+This application uses the following API endpoints:
+
+GET /api/movies: Gets all movies.
+
+GET /api/movies/{id}: Gets a specific movie.
+
+POST /api/movies: Adds a new movie.
+
+PUT /api/movies/{id}: Updates a specific movie.
+
+DELETE /api/movies/{id}: Deletes a specific movie.
+
+GET /api/actors: Gets all actors.
+
+GET /api/actors/{id}: Gets a specific actor.
+
+POST /api/actors: Adds a new actor.
+
+PUT /api/actors/{id}: Updates a specific actor.
+
+DELETE /api/actors/{id}: Deletes a specific actor.
+
+GET /api/directors: Gets all directors.
+
+GET /api/directors/{id}: Gets a specific director.
+
+POST /api/directors: Adds a new director.
+
+PUT /api/directors/{id}: Updates a specific director.
+
+DELETE /api/directors/{id}: Deletes a specific director.
+
+GET /api/genres: Gets all genres.
+
+GET /api/genres/{id}: Gets a specific genre.
